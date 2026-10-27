@@ -1,0 +1,25 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# PHP dependencies and generated test/build output
+/vendor/
+/.phpunit.cache/
+/coverage/
+
+# Runtime logs
+*.log
+/logs/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor settings
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
