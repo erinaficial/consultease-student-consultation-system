@@ -1,54 +1,53 @@
 # ConsultEase
 
-**ConsultEase: A Web-Based Student Consultation Booking System**
+**A web-based student consultation booking system.** Faculty publish their available times, students book them with a topic, and faculty approve, decline or complete each request, with notifications at every step.
 
-> **Project status:** Proposal / initial repository. The application has not been implemented or deployed yet.
+**Live demo:** https://consultease-ph.site.je/
 
-## About
+## Features
+- Registration, login and logout with hashed passwords, sessions and role-based access (Student, Faculty, Administrator)
+- Faculty availability slots (add, edit, delete) limited to school hours
+- Student search by faculty, department and date, with booking and cancellation
+- One booking per slot, protected by a database transaction and a unique constraint
+- Faculty approve, decline or complete requests with remarks
+- In-system notifications (bell with auto-refresh) and a notifications page
+- Administrator overview with a Chart.js chart, user management (create, edit, delete) and filterable reports with CSV download
+- Dark / light mode saved in localStorage, three color palettes, responsive layout with a sidebar
 
-Students often need to find professors in person or message them to arrange consultations. This can cause double bookings, missed appointments, and a lack of records about consultations.
+## Technologies
+HTML5, CSS3, Bootstrap 5, JavaScript ES6+ (ES modules, Fetch API, async/await), Chart.js, PHP 8 (PDO, sessions), MySQL / MariaDB, Git and GitHub.
 
-ConsultEase is planned as a secure, responsive web application where students can book consultation slots with faculty. Faculty will manage availability and consultation requests, while administrators will manage accounts and view reports.
+## Installation (local, XAMPP)
+1. Install XAMPP and start **Apache** and **MySQL**.
+2. Copy this folder to `C:\xampp\htdocs\consultease`.
+3. In `includes/`, copy `config.example.php` to `config.php` and check the database values (the defaults match XAMPP).
+4. Create the database (next section).
+5. Open `http://localhost/consultease/public/`.
 
-## Target users
+## Database setup
+1. Open `http://localhost/phpmyadmin`.
+2. Click **Import** and choose `database/database.sql` (creates the `consultease` database and its four tables).
+3. To get the demo accounts, run once from a command prompt:
+   `cd C:\xampp\htdocs\consultease\database` then `C:\xampp\php\php.exe seed.php`.
+   On a hosting server, import `database/consultease_deploy.sql` into your existing database instead (it already includes the demo accounts and has no `CREATE DATABASE` line).
 
-- **Students** will search for faculty, book an available consultation slot, and follow appointment status.
-- **Faculty** will manage availability, approve or decline bookings, complete consultations, and record remarks.
-- **Administrators** will manage user accounts and view consultation reports.
+## Demo accounts (test data only)
+| Role | Email | Password |
+|---|---|---|
+| Administrator | admin@consultease.test | Admin123! |
+| Faculty | prof@consultease.test | Faculty123! |
+| Student | register a new account on the Register page | |
 
-## Planned features
+## Project structure
+```
+public/     pages, css/, js/, images/
+api/        JSON endpoints used with the Fetch API
+includes/   auth, csrf, database connection, shared header and footer
+database/   database.sql, consultease_deploy.sql, seed.php
+```
 
-- Registration, login, and logout with hashed passwords, sessions, and role-based access for students, faculty, and administrators.
-- Faculty availability slot creation, editing, and deletion.
-- Faculty search and student booking with a consultation topic. Each slot will be bookable only once.
-- Faculty actions to approve, decline, or complete consultations, with remarks.
-- In-system notifications for consultation status changes.
-- A dashboard with Chart.js consultation statistics by month and status.
-- Live search and filters using the Fetch API.
-- Dark mode preference saved with Web Storage.
+## Screenshots
+_Add screenshots of the home page, the student booking page, the faculty requests page and the admin overview._
 
-## Proposed technology
-
-- **Frontend:** HTML5, CSS3, Bootstrap 5, JavaScript ES6+
-- **Backend:** PHP with PDO, sessions, and `password_hash`
-- **Database:** MySQL or MariaDB
-- **Charts:** Chart.js
-
-## Planned database
-
-- **`users`** — name, email, password hash, role, and department.
-- **`availability_slots`** — faculty owner, date, start/end time, and open/booked/cancelled status.
-- **`consultations`** — booked slot, student, topic, pending/approved/declined/completed/cancelled status, faculty remarks, and creation time. A unique constraint on `slot_id` is planned to prevent booking one slot more than once.
-- **`notifications`** — recipient, message, read status, and creation time.
-
-## Scope and limitations
-
-ConsultEase is intended to schedule and track consultations; consultations will not take place inside the system. Video calls and email notifications are not planned.
-
-## Project deliverables
-
-The project is expected to include the deployed web application, source repository, documentation, diagrams, presentation slides, and a demo video. These deliverables are not available yet.
-
-## Local development
-
-The application and its setup instructions have not been implemented yet. Setup guidance will be added when the development environment and application are ready.
+## Developer
+Erin Leigh A. Aficial: design, development, testing, deployment and documentation.
