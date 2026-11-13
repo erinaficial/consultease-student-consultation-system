@@ -1,53 +1,102 @@
 # ConsultEase
 
-**A web-based student consultation booking system.** Faculty publish their available times, students book them with a topic, and faculty approve, decline or complete each request, with in-system notifications at every step.
+## 1. Project Title
 
-**Live demo:** https://consultease-ph.site.je/
+ConsultEase: Student Consultation Booking System
 
-Built as the individual final project for **Web Systems Technology**.
+## 2. Description
 
-## Features
-- Registration, login and logout with hashed passwords, sessions and role-based access (Student, Faculty, Administrator)
-- Faculty availability slots (add, edit, delete) limited to school hours
-- Student search by faculty, department and date, with booking and cancellation
-- One booking per slot, protected by a database transaction and a unique constraint
-- Faculty approve, decline or complete requests with remarks
-- In-system notifications (bell with auto-refresh) and a notifications page
-- Administrator overview with a Chart.js chart, user management (create, edit, delete) and filterable reports with CSV download
-- Dark / light mode saved in localStorage and a responsive layout
-- [Keep only if in your code: onsite or online meeting details on slots, shown to the student after approval]
+ConsultEase is a web-based system for scheduling student consultations with faculty. Students can find available time slots, submit a consultation topic, and follow the request status. Faculty can manage availability and review requests, while administrators manage users and view system reports. The application is built with PHP and MySQL and is currently hosted on InfinityFree.
 
-## Technologies
-HTML5, CSS3, Bootstrap 5, JavaScript ES6+ (ES modules, Fetch API, async/await), Chart.js, PHP 8 (PDO, sessions), MySQL / MariaDB, Git and GitHub. Hosted on InfinityFree.
+## 3. Features
 
-## Requirements
-PHP 8 and MySQL or MariaDB (XAMPP provides both).
+- Role-based registration and sign-in for students, faculty, and administrators
+- Faculty availability management, including onsite or online meeting details
+- Student search and filtering by faculty, department, and date
+- Consultation requests with a topic, status tracking, and cancellation
+- Faculty approval, decline, completion, and remarks
+- In-system notifications for consultation updates
+- Administrator dashboard, user management, reports, and CSV export
+- Responsive layout with dark and light themes
 
-## Installation (local, XAMPP)
-1. Install XAMPP and start **Apache** and **MySQL**.
-2. Copy this folder to `C:\xampp\htdocs\consultease`.
-3. In `includes/`, copy `config.example.php` to `config.php` and check the database values (the defaults match XAMPP). Set `'debug' => true` while developing and `false` on a live site. Never commit `config.php`.
-4. Create the database (next section).
-5. Open `http://localhost/consultease/public/`.
+## 4. Technologies
 
-## Database setup
-1. Open `http://localhost/phpmyadmin`, click **Import**, and choose `database/database.sql` (creates the `consultease` database and its tables).
-2. For the demo accounts, run once: `cd C:\xampp\htdocs\consultease\database` then `C:\xampp\php\php.exe seed.php`.
-3. On a hosting server, import `database/consultease_deploy.sql` into your existing database instead (it includes the demo accounts and has no `CREATE DATABASE` line).
-4. Do not import a fresh dump over a database that already contains data.
+- HTML5
+- CSS3
+- JavaScript ES6+ (ES modules)
+- Bootstrap 5
+- PHP 8 (PDO)
+- MySQL / MariaDB
+- Fetch API (first-party PHP JSON endpoints)
+- Chart.js
+- Git / GitHub
 
-## Demo accounts (test data only)
-| Role | Email | Password |
-|---|---|---|
-| Administrator | admin@consultease.test | Admin123! |
-| Faculty | prof@consultease.test | Faculty123! |
-| Student | student1@test.com | Student123! |
+## 5. Installation Instructions
 
-## API endpoints (used with the Fetch API)
-| Endpoint | Purpose |
-|---|---|
-| `api/slots_search.php` | Search open slots by faculty, department and date |
-| `api/notifications.php` | Read and mark the signed-in user's notifications |
-| `api/admin_stats.php` | Consultation counts for the administrator chart |
+### Requirements
 
-## Project structure
+- PHP 8 or later
+- Apache
+- MySQL or MariaDB
+- XAMPP is recommended for local development
+
+### Run locally
+
+1. Install XAMPP and start Apache and MySQL.
+2. Clone this repository into the XAMPP web directory:
+
+   ```powershell
+   git clone https://github.com/erinaficial/consultease-student-consultation-system.git C:\xampp\htdocs\consultease
+   ```
+
+3. In `C:\xampp\htdocs\consultease\includes`, copy `config.example.php` to `config.php`.
+4. Edit `includes/config.php` with your local database settings. The example defaults are for a standard XAMPP setup. Keep `config.php` private and never commit it.
+5. Follow the database setup below.
+6. Open [http://localhost/consultease/public/](http://localhost/consultease/public/).
+
+To run the focused tests from the project directory:
+
+```powershell
+node --test tests/slot-search-flow.test.mjs
+C:\xampp\php\php.exe tests\meeting_details_validation.php
+```
+
+## 6. Database Setup
+
+For a fresh local installation:
+
+1. Open [http://localhost/phpmyadmin](http://localhost/phpmyadmin).
+2. Import `database/database.sql`. It creates the `consultease` database and required tables.
+3. Optional test data can be added once from the command line:
+
+   ```powershell
+   C:\xampp\php\php.exe database\seed.php
+   ```
+
+Do not import a fresh schema over a database that contains data.
+
+For a new InfinityFree database, create the database through the hosting control panel, import `database/consultease_deploy.sql`, and put the assigned database host, name, username, and password in `includes/config.php`. Do not upload real credentials to GitHub.
+
+## 7. Screenshots
+
+### Landing page
+
+![ConsultEase landing page](screenshots/consultease-landing.png)
+
+### Sign-in page
+
+![ConsultEase sign-in page](screenshots/consultease-login.png)
+
+### Student registration page
+
+![ConsultEase student registration page](screenshots/consultease-register.png)
+
+## 8. Live Demo
+
+[https://consultease-ph.site.je/](https://consultease-ph.site.je/)
+
+## 9. Developers
+
+**Erin L. Aficial** — individual project developer.
+
+Contributions: project planning and design, PHP/MySQL application development, front-end implementation, testing, documentation, and InfinityFree deployment.
