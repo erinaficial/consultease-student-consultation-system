@@ -1,0 +1,2 @@
+# Block direct web access to this folder (it holds config.php and other server-side code).
+Require all denied

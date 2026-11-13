@@ -1,0 +1,2 @@
+# Block direct web access to the database folder.
+Require all denied
