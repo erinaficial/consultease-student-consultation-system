@@ -97,6 +97,6 @@ For a new InfinityFree database, create the database through the hosting control
 
 ## 9. Developers
 
-**Erin L. Aficial** — individual project developer.
+**Erin Leigh A. Aficial** — individual project developer.
 
 Contributions: project planning and design, PHP/MySQL application development, front-end implementation, testing, documentation, and InfinityFree deployment.
